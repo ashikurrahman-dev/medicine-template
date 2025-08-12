@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArOgga Navbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .category-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            text-decoration: none;
+            color: inherit;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .category-link:hover {
+            background-color: #f8f9fa;
+        }
+
+        .category-link img {
+            height: 36px;
+            width: 36px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .submenu {
+            padding-left: 2rem;
+            display: none;
+            /* hidden by default */
+        }
+
+        .arrow {
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+
+        .open>a .arrow {
+            transform: rotate(90deg);
+        }
+
+        .sidebar-fixed {
+            position: fixed;
+            top: 120px;
+            /* adjust to match your header+nav height */
+            left: 0;
+            height: calc(100vh - 100px);
+            /* full height minus header */
+            overflow-y: auto;
+            width: 25%;
+            /* match Bootstrap col-md-3 width */
+        }
+
+        @media (max-width: 768px) {
+            .sidebar-fixed {
+                position: static;
+                /* on mobile, sidebar shouldn't be fixed */
+                height: auto;
+                overflow-y: visible;
+                width: 100%;
+            }
+        }
+
+        .main-content-top {
+            margin-top: 130px;
+        }
+
+        #productScroll1 {
+            overflow-x: auto;
+            overflow-y: hidden;
+            /* prevents vertical scrollbar */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        #productScroll1::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari */
+        }
+
+        #productScroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+            /* prevents vertical scrollbar */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        #productScroll::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fixed-top container-fluid mb-36">
+        <header class="navbar navbar-light bg-light">
+            <div class="container-fluid d-flex align-items-center">
+
+                <!-- Logo & Delivery -->
+                <div class="d-flex align-items-center me-3">
+                    <a class="navbar-brand" href="#">
+                        <img src="logo.jpeg" alt="ArOgga Logo" style="height: 40px;">
+                    </a>
+                    <button class="btn btn-outline-secondary dropdown-toggle ms-2" type="button" aria-expanded="false">
+                        Delivery to <span class="text-primary">Bangladesh</span>
+                    </button>
+                </div>
+
+                <!-- Category Dropdown -->
+                <div class="dropdown me-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        All
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+
+                <!-- Search Bar -->
+                <form class="d-flex flex-grow-1 me-3">
+                    <input class="form-control me-2" type="search" placeholder="Search for 'medicine products'"
+                        aria-label="Search">
+                    <button class="btn btn-success" type="submit">🔍</button>
+                </form>
+
+                <!-- Account & Cart -->
+                <div class="d-flex align-items-center">
+                    <button type="button"
+                        class="btn custom-link d-flex flex-column align-items-start me-3 p-2 rounded bg-light bg-opacity-0 hover-bg-gray"
+                        data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-user me-2"></i>
+                            <small>Hello, <span>User</span></small>
+                        </div>
+                        <small>Account & Orders</small>
+                    </button>
+
+
+                    <a href="#" class="nav-link custom-link position-relative">
+                        <i class="fa-solid fa-cart-shopping fs-5"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                    </a>
+                </div>
+            </div>
+
+            <nav class="bg-light border-bottom">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+
+                            <ul
+                                class="nav nav-pills d-none d-lg-flex flex-wrap justify-content-start align-items-center py-2 mb-0">
+                                <li class="nav-item me-3">
+                                    <a class="nav-link text-success fw-bold d-flex align-items-center px-2 py-1"
+                                        href="#">
+                                        <i class="bi bi-grid-3x3-gap me-1"></i>
+                                        Shop By Category
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown position-static">
+                                    <a class="nav-link text-muted px-2 py-1" href="#" role="button">
+                                        Baby & Mom Care
+                                    </a>
+                                    <!-- sub category -->
+                                    <div
+                                        class="dropdown-menu w-50 mt-0 border-0 shadow-lg p-0 start-50 translate-middle-x">
+                                        <div class="container-fluid">
+                                            <div class="row p-4">
+                                                <!-- Baby Personal Care -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Baby Personal Care</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Grooming
+                                                                & Healthcare Kits</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Shampoo
+                                                                & Conditioners</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Baby
+                                                                Skincare Products</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Soaps,
+                                                                Cleansers & Bodywash</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Baby
+                                                                Toothbrushes & Toothpaste</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Baby
+                                                                Detergent</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Bubble
+                                                                Bath</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Baby Diapers & Clothing -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Baby Diapers & Clothing</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Wipes
+                                                                & Holders</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Disposable
+                                                                Diapers</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Diapering
+                                                                Care</a></li>
+                                                    </ul>
+
+                                                    <h6 class="text-success fw-bold mb-3 mt-4">Baby Gifts & Toys</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Educational
+                                                                Toys</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Soft
+                                                                Toys & Plushies</a></li>
+                                                    </ul>
+                                                </div>
+                                                <!-- Baby Personal Care -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Baby Personal Care</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Grooming
+                                                                & Healthcare Kits</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Shampoo
+                                                                & Conditioners</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Baby
+                                                                Skincare Products</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Soaps,
+                                                                Cleansers & Bodywash</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Baby
+                                                                Toothbrushes & Toothpaste</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Baby
+                                                                Detergent</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Bubble
+                                                                Bath</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Baby Diapers & Clothing -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Baby Diapers & Clothing</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Wipes
+                                                                & Holders</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Disposable
+                                                                Diapers</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Diapering
+                                                                Care</a></li>
+                                                    </ul>
+
+                                                    <h6 class="text-success fw-bold mb-3 mt-4">Baby Gifts & Toys</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Educational
+                                                                Toys</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Soft
+                                                                Toys & Plushies</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- Medicine -->
+                                <li class="nav-item dropdown position-static">
+                                    <a class="nav-link text-muted px-2 py-1" href="#" role="button">
+                                        Medicine
+                                    </a>
+
+                                    <div
+                                        class="dropdown-menu w-50 mt-0 border-0 shadow-lg p-0 start-50 translate-middle-x">
+                                        <div class="container-fluid">
+                                            <div class="row p-4">
+                                                <!-- Prescription Medicines -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Prescription Medicines</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Antibiotics</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Pain
+                                                                Relievers</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Heart
+                                                                Medications</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Diabetes
+                                                                Medicines</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Blood
+                                                                Pressure Medicines</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Thyroid
+                                                                Medicines</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Anti-Allergy
+                                                                Medicines</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Over-the-Counter Medicines -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Over-the-Counter Medicines
+                                                    </h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Cold
+                                                                & Flu</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Fever
+                                                                Reducers</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Digestive
+                                                                Aids</a></li>
+                                                    </ul>
+
+                                                    <h6 class="text-success fw-bold mb-3 mt-4">Vitamins & Supplements
+                                                    </h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Multivitamins</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Omega
+                                                                & Fish Oil</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Health Equipment -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Health Equipment</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Thermometers</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Blood
+                                                                Pressure Monitors</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Glucometers</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Nebulizers</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Oximeters</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Hot
+                                                                & Cold Packs</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">First
+                                                                Aid Kits</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Lab Test & Diagnostics -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Lab Tests & Diagnostics</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Blood
+                                                                Tests</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Urine
+                                                                Tests</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Diabetes
+                                                                Screening</a></li>
+                                                    </ul>
+
+                                                    <h6 class="text-success fw-bold mb-3 mt-4">Health Packages</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Full
+                                                                Body Checkup</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Heart
+                                                                Health Package</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+
+                                <!-- Lab test -->
+                                <li class="nav-item dropdown position-static">
+                                    <a class="nav-link text-muted px-2 py-1" href="#" role="button">
+                                        Lab Test
+                                    </a>
+
+                                    <div
+                                        class="dropdown-menu w-50 mt-0 border-0 shadow-lg p-0 start-50 translate-middle-x">
+                                        <div class="container-fluid">
+                                            <div class="row p-4">
+                                                <!-- Lab Test Category 1 -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Blood Tests</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Complete
+                                                                Blood Count (CBC)</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Blood
+                                                                Sugar (FBS/PPBS)</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Lipid
+                                                                Profile</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Liver
+                                                                Function Test (LFT)</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Kidney
+                                                                Function Test (KFT)</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Thyroid
+                                                                Profile</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Vitamin
+                                                                D & B12</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Lab Test Category 2 -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Urine & Stool Tests</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Urinalysis</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Urine
+                                                                Culture</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Stool
+                                                                Routine Examination</a></li>
+                                                    </ul>
+
+                                                    <h6 class="text-success fw-bold mb-3 mt-4">Infection Tests</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">COVID-19
+                                                                RT-PCR</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Typhoid
+                                                                Test</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Lab Test Category 3 -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Hormone Tests</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Testosterone</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Estrogen</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Progesterone</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Cortisol</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Insulin</a>
+                                                        </li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Parathyroid
+                                                                Hormone</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Growth
+                                                                Hormone</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Lab Test Category 4 -->
+                                                <div class="col-md-3 mb-4">
+                                                    <h6 class="text-success fw-bold mb-3">Specialized Tests</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Allergy
+                                                                Test</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Cancer
+                                                                Marker Tests</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">HIV
+                                                                Test</a></li>
+                                                    </ul>
+
+                                                    <h6 class="text-success fw-bold mb-3 mt-4">Health Packages</h6>
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Full
+                                                                Body Checkup</a></li>
+                                                        <li><a href="#"
+                                                                class="text-decoration-none text-muted small d-block px-2 py-1 rounded">Diabetes
+                                                                Package</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Healthcare</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Beauty</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Sexual Wellness</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Herbal</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Home Care</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Supplement</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Food and Nutrition</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Pet Care</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Veterinary</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Homeopathy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Blogs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted px-2 py-1" href="#">Upload</a>
+                                </li>
+                                <li class="nav-item ms-auto">
+                                    <a class="nav-link text-danger fw-medium d-flex align-items-center px-2 py-1"
+                                        href="#">
+                                        <i class="bi bi-telephone me-2"></i>
+                                        Call for Order
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <!-- Mobile Navigation -->
+                            <div class="d-lg-none py-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-outline-success d-flex align-items-center" type="button"
+                                        id="mobileMenuBtn">
+                                        <i class="bi bi-grid-3x3-gap me-1"></i>
+                                        Categories
+                                    </button>
+                                    <a class="text-danger text-decoration-none fw-medium" href="#">
+                                        <i class="bi bi-telephone me-1"></i>
+                                        Call for Order
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+    <!-- modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 rounded-3 overflow-hidden">
+
+                <div class="row g-0">
+                    <!-- Left Image/Info Section -->
+                    <div class="col-md-6 bg-light p-4 d-flex flex-column justify-content-center text-center">
+                        <img src="https://img.freepik.com/free-vector/flat-customer-support-illustration_23-2148899114.jpg"
+                            alt="Support" class="img-fluid mx-auto mb-3" style="max-height: 200px;">
+                        <h5 class="fw-bold">Instant support & reply</h5>
+                        <p class="text-muted small">
+                            Arogga will receive your order and be able to reply to you once you place an order and ask
+                            for help.
+                        </p>
+                        <div class="d-flex justify-content-center mt-3">
+                            <span class="badge bg-secondary rounded-pill me-1" style="width:8px;height:8px;"></span>
+                            <span class="badge bg-success rounded-pill" style="width:8px;height:8px;"></span>
+                        </div>
+                    </div>
+
+                    <!-- Right Login Section -->
+                    <div class="col-md-6 p-4">
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <h4 class="fw-bold mb-2">Login</h4>
+                        <p class="text-muted small mb-4">
+                            Login to make an order, access your orders, special offers, health tips, and more!
+                        </p>
+
+                        <label class="form-label small">Phone Number</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">+88</span>
+                            <input type="text" class="form-control" placeholder="Enter phone number">
+                        </div>
+
+                        <a href="#" class="small text-success text-decoration-none d-block mb-3">Have a referral
+                            code?</a>
+
+                        <button class="btn btn-success w-100 mb-3">Send</button>
+
+                        <div class="d-flex align-items-center my-3">
+                            <hr class="flex-grow-1">
+                            <span class="mx-2 text-muted small">or</span>
+                            <hr class="flex-grow-1">
+                        </div>
+
+                        <div class="d-flex justify-content-center gap-3 mb-4">
+                            <button class="btn btn-outline-secondary rounded-circle p-2">
+                                <i class="fab fa-google"></i>
+                            </button>
+                            <button class="btn btn-outline-secondary rounded-circle p-2">
+                                <i class="fab fa-linkedin-in"></i>
+                            </button>
+                        </div>
+
+                        <p class="small text-muted mb-0">
+                            By continuing you agree to
+                            <a href="#" class="text-success">Terms & Conditions</a>,
+                            <a href="#" class="text-success">Privacy Policy</a> &
+                            <a href="#" class="text-success">Refund-Return Policy</a>.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="row col-12">
+            <!-- Sidebar -->
+            <div class=" col-md-3 p-0">
+                <div class="bg-white border-end p-3 sidebar-fixed">
+                    <!-- Categories -->
+                    <ul class="list-unstyled m-0">
+                        <!-- Parent Category -->
+                        <li>
+                            <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjMyMlwvNjMyMi1NZWRpY2luZS1JY29uLXIzeHluby5qcGVnIiwiZWRpdHMiOltdfQ=="
+                                    alt="Medicine" class="me-2" style="width: 24px; height: 24px;">
+                                <span class="flex-grow-1">Medicine</span>
+                                <span class="arrow"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                        viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="none" d="M0 0h24v24H0z"></path>
+                                        <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                                    </svg></i></span>
+                            </a>
+                            <div class="submenu">
+                                <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                    <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU2OFwvNjU2OC1BbmVzdGhldGljcy1OZXVyb211c2N1bGFyLUJsb2NraW5nLWtkM2w3dy5wbmciLCJlZGl0cyI6W119"
+                                        alt="Anesthetics" class="me-2" style="width: 24px; height: 24px;">
+                                    <span class="flex-grow-1">Anesthetics & Nerve</span>
+                                    <span class="arrow"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                            viewBox="0 0 24 24" height="24" width="24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                            <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                                        </svg></i></span>
+                                </a>
+                                <div class="submenu">
+                                    <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                        <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU3M1wvNjU3My1fMDA1NV9wb3N0b3BlcmF0aXZlLXBhaW4tYzk5OHE0LnBuZyIsImVkaXRzIjpbXX0="
+                                            alt="Muscle Relaxants" class="me-2" style="width: 24px; height: 24px;">
+                                        <span class="flex-grow-1">Muscle Relaxants</span>
+                                        <span class="arrow"><svg stroke="currentColor" fill="currentColor"
+                                                stroke-width="0" viewBox="0 0 24 24" height="24" width="24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                                <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                                            </svg></span>
+                                    </a>
+                                    <div class="submenu">
+                                        <a href="#"
+                                            class="category-link d-flex align-items-center text-decoration-none">
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU3N1wvNjU3Ny1Mb2NhbC1SZWdpb25hbC1BbmVzdGhldGljcy13OXZ5OW4ucG5nIiwiZWRpdHMiOltdfQ=="
+                                                alt="Sub Category 1" class="me-2" style="width: 24px; height: 24px;">
+                                            Sub Category 1
+                                        </a>
+                                        <a href="#"
+                                            class="category-link d-flex align-items-center text-decoration-none">
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU4NFwvNjU4NC1BbmVzdGhlc2lhLVJlY292ZXJ5LTFseTFxaS5wbmciLCJlZGl0cyI6W119"
+                                                alt="Sub Category 2" class="me-2" style="width: 24px; height: 24px;">
+                                            Sub Category 2
+                                        </a>
+                                    </div>
+                                    <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                        <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU4OFwvNjU4OC1DZXJlYnJvdmFzY3VsYXItU3lzdGVtLXI3cjVpai5wbmciLCJlZGl0cyI6W119"
+                                            alt="Post-Operative Pain" class="me-2" style="width: 24px; height: 24px;">
+                                        Post-Operative Pain
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Another Parent -->
+                        <li>
+                            <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjM4MVwvNjM4MS1BbGxlcmd5LUltbXVuZS1TeXN0ZW0tZjQxZG5rLnBuZyIsImVkaXRzIjpbXX0="
+                                    alt="Antimicrobial" class="me-2" style="width: 24px; height: 24px;">
+                                <span class="flex-grow-1">Antimicrobial</span>
+                                <span class="arrow"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                        viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="none" d="M0 0h24v24H0z"></path>
+                                        <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                                    </svg></span>
+                            </a>
+                            <div class="submenu">
+                                <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                    <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjM4MVwvNjM4MS1BbGxlcmd5LUltbXVuZS1TeXN0ZW0tZjQxZG5rLnBuZyIsImVkaXRzIjpbXX0="
+                                        alt="Antibiotics" class="me-2" style="width: 24px; height: 24px;">
+                                    Antibiotics
+                                </a>
+                                <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                    <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjM4MVwvNjM4MS1BbGxlcmd5LUltbXVuZS1TeXN0ZW0tZjQxZG5rLnBuZyIsImVkaXRzIjpbXX0="
+                                        alt="Antivirals" class="me-2" style="width: 24px; height: 24px;">
+                                    Antivirals
+                                </a>
+                            </div>
+                        </li>
+                        <!-- third parent -->
+                        <li>
+                            <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjMyMlwvNjMyMi1NZWRpY2luZS1JY29uLXIzeHluby5qcGVnIiwiZWRpdHMiOltdfQ=="
+                                    alt="Medicine" class="me-2" style="width: 24px; height: 24px;">
+                                <span class="flex-grow-1">Medicine</span>
+                                <span class="arrow"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                        viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="none" d="M0 0h24v24H0z"></path>
+                                        <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                                    </svg></i></span>
+                            </a>
+                            <div class="submenu">
+                                <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                    <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU2OFwvNjU2OC1BbmVzdGhldGljcy1OZXVyb211c2N1bGFyLUJsb2NraW5nLWtkM2w3dy5wbmciLCJlZGl0cyI6W119"
+                                        alt="Anesthetics" class="me-2" style="width: 24px; height: 24px;">
+                                    <span class="flex-grow-1">Anesthetics & Nerve</span>
+                                    <span class="arrow"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                            viewBox="0 0 24 24" height="24" width="24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                            <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                                        </svg></i></span>
+                                </a>
+                                <div class="submenu">
+                                    <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                        <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU3M1wvNjU3My1fMDA1NV9wb3N0b3BlcmF0aXZlLXBhaW4tYzk5OHE0LnBuZyIsImVkaXRzIjpbXX0="
+                                            alt="Muscle Relaxants" class="me-2" style="width: 24px; height: 24px;">
+                                        <span class="flex-grow-1">Muscle Relaxants</span>
+                                        <span class="arrow"><svg stroke="currentColor" fill="currentColor"
+                                                stroke-width="0" viewBox="0 0 24 24" height="24" width="24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                                <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                                            </svg></span>
+                                    </a>
+                                    <div class="submenu">
+                                        <a href="#"
+                                            class="category-link d-flex align-items-center text-decoration-none">
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU3N1wvNjU3Ny1Mb2NhbC1SZWdpb25hbC1BbmVzdGhldGljcy13OXZ5OW4ucG5nIiwiZWRpdHMiOltdfQ=="
+                                                alt="Sub Category 1" class="me-2" style="width: 24px; height: 24px;">
+                                            Sub Category 1
+                                        </a>
+                                        <a href="#"
+                                            class="category-link d-flex align-items-center text-decoration-none">
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU4NFwvNjU4NC1BbmVzdGhlc2lhLVJlY292ZXJ5LTFseTFxaS5wbmciLCJlZGl0cyI6W119"
+                                                alt="Sub Category 2" class="me-2" style="width: 24px; height: 24px;">
+                                            Sub Category 2
+                                        </a>
+                                    </div>
+                                    <a href="#" class="category-link d-flex align-items-center text-decoration-none">
+                                        <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU4OFwvNjU4OC1DZXJlYnJvdmFzY3VsYXItU3lzdGVtLXI3cjVpai5wbmciLCJlZGl0cyI6W119"
+                                            alt="Post-Operative Pain" class="me-2" style="width: 24px; height: 24px;">
+                                        Post-Operative Pain
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- Main Content  -->
+            <div class="col-md-9 main-content-top">
+                <!-- Carousel image -->
+                <div id="carouselExampleIndicators" class="carousel slide container" data-bs-ride="carousel"
+                    data-bs-interval="2000">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                            aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                            aria-label="Slide 4"></button>
+                    </div>
+                    <div class="carousel-inner mt-4">
+                        <div class="carousel-item active">
+                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvMTEzLW1vbnNzc29vb24tV2ViLUJhbm5lci1oOXM1dmwucG5nIiwiZWRpdHMiOltdfQ=="
+                                class="d-block w-100 img-fluid rounded-4 " alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvMTEzLVdlYi1CYW5uZXItdXI5MHd5LnBuZyIsImVkaXRzIjpbXX0="
+                                class="d-block w-100 img-fluid rounded-4" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvMTEzLTk5OS1XRWItcGR1ZTk3LnBuZyIsImVkaXRzIjpbXX0="
+                                class="d-block w-100 img-fluid rounded-4" alt="Third slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvMTEzLVNleHVhbC1XZWxsZW5lc3MtQmFubmVyLWJ6aHhmai5wbmciLCJlZGl0cyI6W119"
+                                class="d-block w-100 img-fluid rounded-4" alt="Third slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvMTEzLXdlYi02ejdsdzYucG5nIiwiZWRpdHMiOltdfQ=="
+                                class="d-block w-100 img-fluid rounded-4" alt="Third slide">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <!-- category -->
+                <div class=" container my-5">
+                    <h2 class="text-center mb-5">Pop n Grab 🌟</h2>
+                    <div class="row justify-content-center g-4">
+
+                        <!-- Category Item -->
+                        <div class="col-6 col-sm-4 col-md-3 text-center">
+                            <a href="" class="mx-auto"
+                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LXdlYi0zNDAtMzQwLTEtNGtyNnQ5LnBuZyIsImVkaXRzIjpbXX0="
+                                    alt="Spice Up" class="img-fluid rounded-circle">
+                            </a>
+                            <p class="mt-2 fw-bold">Spice Up 🌶</p>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-3 text-center">
+                            <a href="" class="mx-auto"
+                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LUJlYXV0eS1xZnIwZGEucG5nIiwiZWRpdHMiOltdfQ=="
+                                    alt="Shop Your Glow" class="img-fluid rounded-circle">
+                            </a>
+                            <p class="mt-2 fw-bold">Shop Your Glow ⭐</p>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-3 text-center">
+                            <a href="" class="mx-auto"
+                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTMtZ2w1dGo2LnBuZyIsImVkaXRzIjpbXX0="
+                                    alt="Boost & Balance" class="img-fluid rounded-circle">
+                            </a>
+                            <p class="mt-2 fw-bold">Boost & Balance 🌿</p>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-3 text-center">
+                            <a href="" class="mx-auto"
+                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LUdyb2NlcnktRXNzZW50aWFscy1lZThlcGgucG5nIiwiZWRpdHMiOltdfQ=="
+                                    alt="Grocery Essentials" class="img-fluid rounded-circle">
+                            </a>
+                            <p class="mt-2 fw-bold">Grocery Essentials 🛒</p>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-3 text-center">
+                            <a href="" class="mx-auto"
+                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTgtanJxNW1hLnBuZyIsImVkaXRzIjpbXX0="
+                                    alt="Paws & Claws" class="img-fluid rounded-circle">
+                            </a>
+                            <p class="mt-2 fw-bold">Paws & Claws 🐾</p>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-3 text-center">
+                            <a href="" class="mx-auto"
+                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LUNsZWFuLWFuZC1zYXZlLWMydWd1dC5wbmciLCJlZGl0cyI6W119"
+                                    alt="Clean & Save" class="img-fluid rounded-circle">
+                            </a>
+                            <p class="mt-2 fw-bold">Clean & Save 🧹</p>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-3 text-center">
+                            <a href="" class="mx-auto"
+                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTkta3pnbXFnLnBuZyIsImVkaXRzIjpbXX0="
+                                    alt="Tiny Tots" class="img-fluid rounded-circle">
+                            </a>
+                            <p class="mt-2 fw-bold">Tiny Tots 🥕</p>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-3 text-center">
+                            <a href="" class="mx-auto"
+                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTEwLXNmNXNwYi5wbmciLCJlZGl0cyI6W119"
+                                    alt="Health & Harmony" class="img-fluid rounded-circle">
+                            </a>
+                            <p class="mt-2 fw-bold">Health & Harmony 💉</p>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- product -->
+                <div class="container-fluid w-100  py-2" style=" background-color: rgba(1, 61, 52, 0.1)">
+                    <div class="container">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h1 class="text-success fw-bold fs-1 mb-0">Glow Naturally by Orgagenic</h1>
+                            <a href="#" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold shadow-sm 
+   transition-all" style="transition: 0.3s;">
+                                See All <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+
+                        <!-- Carousel -->
+                        <div class="position-relative">
+                            <!-- Scroll Container -->
+                            <div id="productScroll" class="d-flex overflow-auto gap-3 pb-3"
+                                style="scroll-behavior: smooth;">
+
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3  rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3  rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3  rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3  rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3  rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3  rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3  rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3  rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!-- Prev/Next buttons -->
+                            <button id="prevBtn"
+                                class="btn btn-light position-absolute top-50 start-0 translate-middle-y shadow"
+                                style="left: -20px; z-index: 10;">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+
+                            <button id="nextBtn"
+                                class="btn btn-light position-absolute top-50 end-0 translate-middle-y shadow"
+                                style="right: -20px; z-index: 10;">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- product 2 -->
+                <div class="container-fluid  py-2">
+                    <div class="container">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h1 class="text-success fw-bold fs-1 mb-0">Bedroom Boosters</h1>
+                            <a href="#" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold shadow-sm 
+   transition-all" style="transition: 0.3s;">
+                                See All <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+
+                        <!-- Carousel -->
+                        <div class="position-relative">
+                            <!-- Scroll Container -->
+                            <div id="productScroll1" class="d-flex overflow-auto gap-3 pb-3"
+                                style="scroll-behavior: smooth;">
+
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3 rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3 rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3 rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3 rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3 rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3 rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3 rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CARD 1 -->
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                    <div
+                                        class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                                        <!-- Product Image with hover zoom -->
+                                        <div class="position-relative bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                                            style="height: 180px;">
+
+                                            <!-- Discount Badge -->
+                                            <span
+                                                class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-danger text-white rounded-2 fw-bold small shadow"
+                                                style="z-index: 3; font-size: 0.75rem; line-height: 1rem;">
+                                                11%<br>OFF
+                                            </span>
+
+                                            <!-- Product Image -->
+                                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJQcm9kdWN0LXBfaW1hZ2VzXC83Mjc0NFwvNzI3NDQtMTUtMS1odmV1bWwuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0Ijoib3V0c2lkZSJ9fX0="
+                                                alt="Product" class="img-fluid p-3"
+                                                style="transition: transform 0.3s ease; cursor: pointer; z-index: 1; position: relative;"
+                                                onmouseover="this.style.transform='scale(1.15)';"
+                                                onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+
+
+                                        <!-- Card Body -->
+                                        <div class="card-body d-flex flex-column text-center p-3">
+
+                                            <!-- Delivery Info -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center gap-2 mb-2 text-muted small">
+                                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                                                    style="width: 20px; height: 20px;">
+                                                    <i class="fas fa-truck fa-xs"></i>
+                                                </div>
+                                                <span>12-24 Hours</span>
+                                            </div>
+
+                                            <!-- Product Name -->
+                                            <h6 class="fw-semibold text-dark mb-2 text-truncate">
+                                                Orgagenic Instant Glow 100g
+                                            </h6>
+
+                                            <!-- Rating -->
+                                            <div
+                                                class="d-flex align-items-center justify-content-center mb-2 text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star text-muted"></i>
+                                                <small class="text-muted ms-1">(1)</small>
+                                            </div>
+
+                                            <!-- Price & Button -->
+                                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                                <div class="text-start">
+                                                    <small class="text-muted text-decoration-line-through">৳340</small>
+                                                    <div class="text-success fw-bold fs-5">৳302</div>
+                                                </div>
+                                                <button
+                                                    class="btn btn-info text-white fw-semibold px-3 rounded-2 shadow-sm">
+                                                    ADD
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <!-- Prev/Next buttons -->
+                            <button id="prevBtn1"
+                                class="btn btn-light position-absolute top-50 start-0 translate-middle-y shadow"
+                                style="left: -20px; z-index: 10;">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+
+                            <button id="nextBtn1"
+                                class="btn btn-light position-absolute top-50 end-0 translate-middle-y shadow"
+                                style="right: -20px; z-index: 10;">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <footer class="bg-dark text-light py-5 px-3">
+                    <div class="container">
+                        <div class="row g-4">
+
+                            <!-- Column 1: Logo & About -->
+                            <div class="col-md-3">
+                                <img src="logo.jpeg" alt="Arogga Logo" class="mb-3" style="max-width: 150px;">
+                                <p class="mb-3">Connect our specialist doctor at any time from anywhere</p>
+                            </div>
+
+                            <!-- Column 2: Company & Services -->
+                            <div class="col-md-3">
+                                <h5 class="mb-3">Company</h5>
+                                <ul class="list-unstyled mb-4">
+                                    <li><a href="#" class="text-light text-decoration-none">Careers <span
+                                                class="badge bg-success">We are hiring</span></a></li>
+                                    <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
+                                    <li><a href="#" class="text-light text-decoration-none">Terms and Conditions</a>
+                                    </li>
+                                    <li><a href="#" class="text-light text-decoration-none">Return and Refund Policy</a>
+                                    </li>
+                                </ul>
+                                <h5 class="mb-3">Our Services</h5>
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#" class="text-light text-decoration-none">Order Medicine</a></li>
+                                    <li><a href="#" class="text-light text-decoration-none">Healthcare Programs</a></li>
+                                    <li><a href="#" class="text-light text-decoration-none">Lab Tests</a></li>
+                                    <li><a href="#" class="text-light text-decoration-none">Beauty</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Column 3: Useful Links -->
+                            <div class="col-md-3">
+                                <h5 class="mb-3">Useful Links</h5>
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#" class="text-light text-decoration-none">FAQ</a></li>
+                                    <li><a href="#" class="text-light text-decoration-none">Account</a></li>
+                                    <li><a href="#" class="text-light text-decoration-none">Register the Pharmacy</a>
+                                    </li>
+                                    <li><a href="#" class="text-light text-decoration-none">Special Offers</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Column 4: Contact Info -->
+                            <div class="col-md-3">
+                                <h5 class="mb-3">Contact Info</h5>
+                                <p class="mb-2"><strong>Address:</strong> D/15-1, Road-36, Block-D, Section Mirpur,
+                                    Dhaka-1216</p>
+                                <p class="mb-2"><strong>Hot Line:</strong> 09610016778</p>
+                                <p class="mb-3"><strong>Whatsapp:</strong> 01810-117100</p>
+                                <div class="d-flex">
+                                    <a href="#" class="text-light me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                                    <a href="#" class="text-light me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                                    <a href="#" class="text-light me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                                    <a href="#" class="text-light"><i class="fab fa-twitter fa-lg"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer Bottom -->
+                        <div class="row mt-4">
+                            <div class="col-12 text-center small">
+                                <p class="mb-0">©2025 Danpite Limited. All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
