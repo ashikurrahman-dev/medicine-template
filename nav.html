@@ -112,13 +112,8 @@
                     </a>
                     <button class="btn btn-outline-secondary dropdown-toggle ms-2" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Deliver To <span class="text-primary">Choose A...</span>
+                        Deliver To <span class="text-primary">Choose A Location</span>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Bangladesh</a></li>
-                        <li><a class="dropdown-item" href="#">India</a></li>
-                        <li><a class="dropdown-item" href="#">Pakistan</a></li>
-                    </ul>
                 </div>
 
                 <!-- Category Dropdown -->
@@ -146,7 +141,7 @@
                 <div class="d-flex align-items-center">
                     <button type="button"
                         class="btn custom-link d-flex flex-column align-items-start me-3 p-2 rounded bg-light bg-opacity-0"
-                        data-bs-toggle="modal" data-bs-target="#accountModal">
+                        data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                         <div class="d-flex align-items-center">
                             <i class="fa-solid fa-user me-2"></i>
                             <small>Hello, <span>User</span></small>
@@ -609,67 +604,6 @@
             </nav>
         </header>
 
-        <!-- Desktop Version Header -->
-        <header class="navbar navbar-light bg-light d-none d-lg-block">
-            <div class="container-fluid d-flex align-items-center">
-                <!-- Logo & Delivery -->
-                <div class="d-flex align-items-center me-3">
-                    <a class="navbar-brand" href="#">
-                        <img src="logo.jpeg" alt="ArOgga Logo" style="height: 40px;">
-                    </a>
-                    <button class="btn btn-outline-secondary dropdown-toggle ms-2" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Deliver To <span class="text-primary">Choose A...</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Bangladesh</a></li>
-                        <li><a class="dropdown-item" href="#">India</a></li>
-                        <li><a class="dropdown-item" href="#">Pakistan</a></li>
-                    </ul>
-                </div>
-
-                <!-- Category Dropdown -->
-                <div class="dropdown me-2">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        All
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                        <li><a class="dropdown-item" href="#">Medicine</a></li>
-                        <li><a class="dropdown-item" href="#">Healthcare</a></li>
-                        <li><a class="dropdown-item" href="#">Beauty Products</a></li>
-                        <li><a class="dropdown-item" href="#">Personal Care</a></li>
-                    </ul>
-                </div>
-
-                <!-- Search Bar -->
-                <form class="d-flex flex-grow-1 me-3">
-                    <input class="form-control me-2" type="search" placeholder="Search for 'medicine products'"
-                        aria-label="Search">
-                    <button class="btn btn-success" type="submit">🔍</button>
-                </form>
-
-                <!-- Account & Cart -->
-                <div class="d-flex align-items-center">
-                    <button type="button"
-                        class="btn custom-link d-flex flex-column align-items-start me-3 p-2 rounded bg-light bg-opacity-0"
-                        data-bs-toggle="modal" data-bs-target="#accountModal">
-                        <div class="d-flex align-items-center">
-                            <i class="fa-solid fa-user me-2"></i>
-                            <small>Hello, <span>User</span></small>
-                        </div>
-                        <small>Account & Orders</small>
-                    </button>
-
-                    <a href="#" class="nav-link custom-link position-relative">
-                        <i class="fa-solid fa-cart-shopping fs-5"></i>
-                        <span
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-                    </a>
-                </div>
-            </div>
-        </header>
-
         <!-- Mobile/Tablet Version Header -->
         <header class="navbar navbar-light bg-white shadow-sm sticky-top d-lg-none">
             <div class="container-fluid">
@@ -718,7 +652,6 @@
         </header>
 
 
-    </div>
     </div>
     <!-- modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
@@ -791,7 +724,7 @@
         </div>
     </div>
 
-    <div class="">
+        <!-- sidebar and main content -->
         <div class="row col-12">
             <!-- Sidebar -->
             <div class=" col-md-3 p-0 d-none d-lg-block">
@@ -999,12 +932,12 @@
                 <!-- category -->
                 <div class=" container my-5">
                     <h2 class="text-center mb-5">Pop n Grab 🌟</h2>
-                    <div class="row justify-content-center g-4">
+                    <div class="row justify-content-center g-8 d-lg-4">
 
                         <!-- Category Item -->
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LXdlYi0zNDAtMzQwLTEtNGtyNnQ5LnBuZyIsImVkaXRzIjpbXX0="
                                     alt="Spice Up" class="img-fluid rounded-circle">
                             </a>
@@ -1013,7 +946,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LUJlYXV0eS1xZnIwZGEucG5nIiwiZWRpdHMiOltdfQ=="
                                     alt="Shop Your Glow" class="img-fluid rounded-circle">
                             </a>
@@ -1022,7 +955,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTMtZ2w1dGo2LnBuZyIsImVkaXRzIjpbXX0="
                                     alt="Boost & Balance" class="img-fluid rounded-circle">
                             </a>
@@ -1031,7 +964,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LUdyb2NlcnktRXNzZW50aWFscy1lZThlcGgucG5nIiwiZWRpdHMiOltdfQ=="
                                     alt="Grocery Essentials" class="img-fluid rounded-circle">
                             </a>
@@ -1040,7 +973,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTgtanJxNW1hLnBuZyIsImVkaXRzIjpbXX0="
                                     alt="Paws & Claws" class="img-fluid rounded-circle">
                             </a>
@@ -1049,7 +982,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LUNsZWFuLWFuZC1zYXZlLWMydWd1dC5wbmciLCJlZGl0cyI6W119"
                                     alt="Clean & Save" class="img-fluid rounded-circle">
                             </a>
@@ -1058,7 +991,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTkta3pnbXFnLnBuZyIsImVkaXRzIjpbXX0="
                                     alt="Tiny Tots" class="img-fluid rounded-circle">
                             </a>
@@ -1067,7 +1000,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTEwLXNmNXNwYi5wbmciLCJlZGl0cyI6W119"
                                     alt="Health & Harmony" class="img-fluid rounded-circle">
                             </a>
@@ -1082,12 +1015,16 @@
                 <div class="container-fluid w-100  py-2" style=" background-color: rgba(1, 61, 52, 0.1)">
                     <div class="container">
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h1 class="text-success fw-bold fs-1 mb-0">Glow Naturally by Orgagenic</h1>
-                            <a href="#" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold shadow-sm 
-   transition-all" style="transition: 0.3s;">
+                            <h1 class="text-success fw-bold fs-6 fs-sm-5 fs-md-4 fs-lg-3 mb-0">
+                                Glow Naturally by Orgagenic
+                            </h1>
+                            <a href="#"
+                                class="btn btn-outline-primary rounded-pill px-2 px-sm-3 py-1 py-sm-2 fw-semibold shadow-sm">
                                 See All <i class="fas fa-arrow-right ms-1"></i>
                             </a>
                         </div>
+
+
 
                         <!-- Carousel -->
                         <div class="position-relative">
@@ -1096,7 +1033,7 @@
                                 style="scroll-behavior: smooth;">
 
                                 <!-- CARD 1 -->
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-3 flex-shrink-0">
                                     <div
                                         class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
                                         <!-- Product Image with hover zoom -->
@@ -1164,7 +1101,7 @@
                                 </div>
 
                                 <!-- CARD 1 -->
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6  flex-shrink-0">
                                     <div
                                         class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
                                         <!-- Product Image with hover zoom -->
@@ -1664,9 +1601,11 @@
                 <div class="container-fluid  py-2">
                     <div class="container">
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h1 class="text-success fw-bold fs-1 mb-0">Bedroom Boosters</h1>
-                            <a href="#" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold shadow-sm 
-   transition-all" style="transition: 0.3s;">
+                            <h1 class="text-success fw-bold fs-6 fs-sm-5 fs-md-4 fs-lg-3 mb-0">
+                                Bedroom Boosters
+                            </h1>
+                            <a href="#"
+                                class="btn btn-outline-primary rounded-pill px-2 px-sm-3 py-1 py-sm-2 fw-semibold shadow-sm">
                                 See All <i class="fas fa-arrow-right ms-1"></i>
                             </a>
                         </div>
@@ -2310,7 +2249,7 @@
             </div>
 
         </div>
-    </div>
+
 
     <!-- Mobile sticky footer using Bootstrap classes only -->
     <footer class="navbar navbar-light bg-white shadow-sm fixed-bottom border-top d-lg-none">
@@ -2330,11 +2269,13 @@
 
                         <!-- Sidebar Toggle Link -->
                         <div class="text-center">
-                            <a href="#" class="mobile-sidebar-toggle" id="mobileSidebarToggle">
+                            <a href="#" class="mobile-sidebar-toggle d-flex flex-column align-items-center"
+                                id="mobileSidebarToggle">
                                 <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
                                     stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                                 </svg>
+                                <small class="fw-medium">Categories</small>
                             </a>
                         </div>
 
@@ -2380,7 +2321,6 @@
         </div>
     </footer>
 
-    <!-- Mobile Sidebar Overlay -->
     <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
 
     <!-- Mobile Sidebar -->
@@ -2475,7 +2415,7 @@
                             <span class="flex-grow-1">Antibiotics</span>
                         </a>
                         <a href="#" class="mobile-category-link">
-                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUAXhvbm9teS10X2Jhbm5lclwvNjM4MVwvNjM4MS1BbGxlcmd5LUltbXVuZS1TeXN0ZW0tZjQxZG5rLnBuZyIsImVkaXRzIjpbXX0="
+                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjM4MVwvNjM4MS1BbGxlcmd5LUltbXVuZS1TeXN0ZW0tZjQxZG5rLnBuZyIsImVkaXRzIjpbXX0="
                                 alt="Antivirals">
                             <span class="flex-grow-1">Antivirals</span>
                         </a>

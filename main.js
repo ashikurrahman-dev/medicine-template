@@ -1,4 +1,4 @@
-       document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     // ==============================
     // Navigation active state
     // ==============================
@@ -88,97 +88,128 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-  const scrollContainer = document.getElementById('productScroll');
-  document.getElementById('prevBtn').addEventListener('click', () => {
+const scrollContainer = document.getElementById('productScroll');
+document.getElementById('prevBtn').addEventListener('click', () => {
     scrollContainer.scrollBy({ left: -300, behavior: 'smooth' });
-  });
-  document.getElementById('nextBtn').addEventListener('click', () => {
+});
+document.getElementById('nextBtn').addEventListener('click', () => {
     scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
-  });
+});
 
-  const scrollContainer1 = document.getElementById('productScroll1');
-  document.getElementById('prevBtn1').addEventListener('click', () => {
+const scrollContainer1 = document.getElementById('productScroll1');
+document.getElementById('prevBtn1').addEventListener('click', () => {
     scrollContainer1.scrollBy({ left: -300, behavior: 'smooth' });
-  });
-  document.getElementById('nextBtn1').addEventListener('click', () => {
+});
+document.getElementById('nextBtn1').addEventListener('click', () => {
     scrollContainer1.scrollBy({ left: 300, behavior: 'smooth' });
-  });
+});
 
 
+// mobile sidebar
+document.addEventListener('DOMContentLoaded', function () {
+    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+    const mobileCloseSidebar = document.getElementById('mobileCloseSidebar');
 
+    // Function to open sidebar
+    function openMobileSidebar() {
+        mobileSidebar.classList.add('show');
+        mobileSidebarOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent body scrolling
+    }
 
-//   mobile sidebar
- console.log("Mobile sidebar script loaded");
+    // Function to close sidebar
+    function closeMobileSidebar() {
+        mobileSidebar.classList.remove('show');
+        mobileSidebarOverlay.classList.remove('show');
+        document.body.style.overflow = ''; // Restore body scrolling
+    }
 
-        // Get elements
-        const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
-        const mobileSidebar = document.getElementById('mobileSidebar');
-        const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
-        const mobileCloseSidebar = document.getElementById('mobileCloseSidebar');
+    // Event listeners for opening sidebar
+    mobileSidebarToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        openMobileSidebar();
+    });
 
-        // Verify elements exist
-        if (!mobileSidebarToggle) console.error("Mobile sidebar toggle element not found");
-        if (!mobileSidebar) console.error("Mobile sidebar element not found");
-        if (!mobileSidebarOverlay) console.error("Mobile sidebar overlay element not found");
-        if (!mobileCloseSidebar) console.error("Mobile close sidebar button not found");
+    // Event listeners for closing sidebar
+    mobileCloseSidebar.addEventListener('click', function (e) {
+        e.preventDefault();
+        closeMobileSidebar();
+    });
 
-        // Open sidebar
-        mobileSidebarToggle.addEventListener('click', (e) => {
+    mobileSidebarOverlay.addEventListener('click', function () {
+        closeMobileSidebar();
+    });
+
+    // Close sidebar on escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileSidebar.classList.contains('show')) {
+            closeMobileSidebar();
+        }
+    });
+
+    // Handle submenu toggles
+    document.querySelectorAll('[data-toggle="mobile-submenu"]').forEach(function (toggleLink) {
+        toggleLink.addEventListener('click', function (e) {
             e.preventDefault();
-            console.log("Mobile sidebar toggle clicked");
-            mobileSidebar.classList.add('active');
-            mobileSidebarOverlay.classList.add('active');
-        });
 
-        // Close sidebar when clicking overlay
-        mobileSidebarOverlay.addEventListener('click', () => {
-            console.log("Mobile overlay clicked");
-            mobileSidebar.classList.remove('active');
-            mobileSidebarOverlay.classList.remove('active');
-            // Close all submenus when sidebar closes
-            document.querySelectorAll('.mobile-submenu.active').forEach(submenu => {
-                submenu.classList.remove('active');
-            });
-            document.querySelectorAll('.mobile-arrow.active').forEach(arrow => {
-                arrow.classList.remove('active');
-            });
-        });
+            const submenu = this.nextElementSibling;
+            if (submenu && submenu.classList.contains('mobile-submenu')) {
+                const isOpen = submenu.classList.contains('show');
 
-        // Close sidebar when clicking close button
-        mobileCloseSidebar.addEventListener('click', () => {
-            console.log("Mobile close button clicked");
-            mobileSidebar.classList.remove('active');
-            mobileSidebarOverlay.classList.remove('active');
-            // Close all submenus when sidebar closes
-            document.querySelectorAll('.mobile-submenu.active').forEach(submenu => {
-                submenu.classList.remove('active');
-            });
-            document.querySelectorAll('.mobile-arrow.active').forEach(arrow => {
-                arrow.classList.remove('active');
-            });
-        });
+                // Find the parent container (ul or div) to get siblings at the same level
+                const parentLi = this.closest('li');
+                const parentContainer = parentLi.parentNode;
 
-        // Submenu toggle functionality
-        document.querySelectorAll('[data-toggle="mobile-submenu"]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                console.log("Mobile submenu link clicked:", link.textContent);
-                const submenu = link.nextElementSibling;
-                const arrow = link.querySelector('.mobile-arrow');
-                if (submenu && submenu.classList.contains('mobile-submenu')) {
-                    const isActive = submenu.classList.contains('active');
-                    // Close other submenus at the same level
-                    link.parentElement.parentElement.querySelectorAll('.mobile-submenu.active').forEach(sibling => {
-                        if (sibling !== submenu) {
-                            sibling.classList.remove('active');
-                            sibling.previousElementSibling.querySelector('.mobile-arrow').classList.remove('active');
+                // Close all other submenus at the same level only
+                const directSiblings = Array.from(parentContainer.children).filter(child =>
+                    child !== parentLi && child.tagName === 'LI'
+                );
+
+                directSiblings.forEach(function (siblingLi) {
+                    const siblingSubmenu = siblingLi.querySelector(':scope > .mobile-category-link + .mobile-submenu');
+                    if (siblingSubmenu && siblingSubmenu.classList.contains('show')) {
+                        siblingSubmenu.classList.remove('show');
+                        const siblingToggle = siblingSubmenu.previousElementSibling;
+                        if (siblingToggle) {
+                            siblingToggle.setAttribute('aria-expanded', 'false');
+                        }
+                        // Close all nested submenus within this sibling
+                        siblingSubmenu.querySelectorAll('.mobile-submenu.show').forEach(function (nestedSubmenu) {
+                            nestedSubmenu.classList.remove('show');
+                            const nestedToggle = nestedSubmenu.previousElementSibling;
+                            if (nestedToggle) {
+                                nestedToggle.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                    }
+                });
+
+                // Toggle current submenu
+                if (isOpen) {
+                    submenu.classList.remove('show');
+                    this.setAttribute('aria-expanded', 'false');
+                    // Close all nested submenus
+                    submenu.querySelectorAll('.mobile-submenu.show').forEach(function (nestedSubmenu) {
+                        nestedSubmenu.classList.remove('show');
+                        const nestedToggle = nestedSubmenu.previousElementSibling;
+                        if (nestedToggle) {
+                            nestedToggle.setAttribute('aria-expanded', 'false');
                         }
                     });
-                    // Toggle current submenu
-                    submenu.classList.toggle('active');
-                    if (arrow) arrow.classList.toggle('active', !isActive);
                 } else {
-                    console.warn("Mobile submenu not found for link:", link.textContent);
+                    submenu.classList.add('show');
+                    this.setAttribute('aria-expanded', 'true');
                 }
-            });
+            }
         });
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function () {
+        if (window.innerWidth >= 768) {
+            closeMobileSidebar();
+        }
+    });
+});

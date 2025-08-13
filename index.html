@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArOgga Navbar</title>
+    <title>Danpite</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         .category-link {
             display: flex;
@@ -101,16 +102,17 @@
 
 <body>
     <div class="fixed-top container-fluid mb-36">
-        <header class="navbar navbar-light bg-light">
+        <!-- Desktop Version Header -->
+        <header class="navbar navbar-light bg-light d-none d-lg-block">
             <div class="container-fluid d-flex align-items-center">
-
                 <!-- Logo & Delivery -->
                 <div class="d-flex align-items-center me-3">
                     <a class="navbar-brand" href="#">
                         <img src="logo.jpeg" alt="ArOgga Logo" style="height: 40px;">
                     </a>
-                    <button class="btn btn-outline-secondary dropdown-toggle ms-2" type="button" aria-expanded="false">
-                        Delivery to <span class="text-primary">Bangladesh</span>
+                    <button class="btn btn-outline-secondary dropdown-toggle ms-2" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Deliver To Location</span>
                     </button>
                 </div>
 
@@ -121,9 +123,10 @@
                         All
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">Medicine</a></li>
+                        <li><a class="dropdown-item" href="#">Healthcare</a></li>
+                        <li><a class="dropdown-item" href="#">Beauty Products</a></li>
+                        <li><a class="dropdown-item" href="#">Personal Care</a></li>
                     </ul>
                 </div>
 
@@ -137,7 +140,7 @@
                 <!-- Account & Cart -->
                 <div class="d-flex align-items-center">
                     <button type="button"
-                        class="btn custom-link d-flex flex-column align-items-start me-3 p-2 rounded bg-light bg-opacity-0 hover-bg-gray"
+                        class="btn custom-link d-flex flex-column align-items-start me-3 p-2 rounded bg-light bg-opacity-0"
                         data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                         <div class="d-flex align-items-center">
                             <i class="fa-solid fa-user me-2"></i>
@@ -146,7 +149,6 @@
                         <small>Account & Orders</small>
                     </button>
 
-
                     <a href="#" class="nav-link custom-link position-relative">
                         <i class="fa-solid fa-cart-shopping fs-5"></i>
                         <span
@@ -154,7 +156,6 @@
                     </a>
                 </div>
             </div>
-
             <nav class="bg-light border-bottom">
                 <div class="container-fluid">
                     <div class="row">
@@ -602,6 +603,55 @@
                 </div>
             </nav>
         </header>
+
+        <!-- Mobile/Tablet Version Header -->
+        <header class="navbar navbar-light bg-white shadow-sm sticky-top d-lg-none">
+            <div class="container-fluid">
+                <!-- Top row: Logo, Delivery, Account, Cart -->
+                <div class="d-flex align-items-center justify-content-between w-100 mb-2">
+                    <div class="d-flex align-items-center">
+                        <!-- Logo -->
+                        <a class="navbar-brand me-2" href="#">
+                            <img src="logo.jpeg" alt="ArOgga Logo" class="d-inline-block" style="height: 35px;">
+                        </a>
+
+                        <!-- Delivery Location -->
+                        <button class="btn btn-outline-secondary btn-sm d-sm-block" type="button"
+                            data-bs-toggle="dropdown">
+                            Deliver to <span class="text-primary">Bangladesh</span>
+                        </button>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+
+
+                        <!-- Cart -->
+                        <a href="#" class="nav-link position-relative">
+                            <i class="fa-solid fa-shopping-cart fs-5"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bottom row: Search -->
+                <div class="d-flex align-items-center w-100">
+
+                    <!-- Search Bar -->
+                    <form class="d-flex flex-grow-1">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search for 'medicine products'"
+                                aria-label="Search">
+                            <button class="btn btn-success" type="submit">
+                                <i class="fa-solid fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+
     </div>
     <!-- modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
@@ -674,10 +724,10 @@
         </div>
     </div>
 
-    <div class="">
+        <!-- sidebar and main content -->
         <div class="row col-12">
             <!-- Sidebar -->
-            <div class=" col-md-3 p-0">
+            <div class=" col-md-3 p-0 d-none d-lg-block">
                 <div class="bg-white border-end p-3 sidebar-fixed">
                     <!-- Categories -->
                     <ul class="list-unstyled m-0">
@@ -882,12 +932,12 @@
                 <!-- category -->
                 <div class=" container my-5">
                     <h2 class="text-center mb-5">Pop n Grab 🌟</h2>
-                    <div class="row justify-content-center g-4">
+                    <div class="row justify-content-center g-8 d-lg-4">
 
                         <!-- Category Item -->
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LXdlYi0zNDAtMzQwLTEtNGtyNnQ5LnBuZyIsImVkaXRzIjpbXX0="
                                     alt="Spice Up" class="img-fluid rounded-circle">
                             </a>
@@ -896,7 +946,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LUJlYXV0eS1xZnIwZGEucG5nIiwiZWRpdHMiOltdfQ=="
                                     alt="Shop Your Glow" class="img-fluid rounded-circle">
                             </a>
@@ -905,7 +955,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTMtZ2w1dGo2LnBuZyIsImVkaXRzIjpbXX0="
                                     alt="Boost & Balance" class="img-fluid rounded-circle">
                             </a>
@@ -914,7 +964,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LUdyb2NlcnktRXNzZW50aWFscy1lZThlcGgucG5nIiwiZWRpdHMiOltdfQ=="
                                     alt="Grocery Essentials" class="img-fluid rounded-circle">
                             </a>
@@ -923,7 +973,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTgtanJxNW1hLnBuZyIsImVkaXRzIjpbXX0="
                                     alt="Paws & Claws" class="img-fluid rounded-circle">
                             </a>
@@ -932,7 +982,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LUNsZWFuLWFuZC1zYXZlLWMydWd1dC5wbmciLCJlZGl0cyI6W119"
                                     alt="Clean & Save" class="img-fluid rounded-circle">
                             </a>
@@ -941,7 +991,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTkta3pnbXFnLnBuZyIsImVkaXRzIjpbXX0="
                                     alt="Tiny Tots" class="img-fluid rounded-circle">
                             </a>
@@ -950,7 +1000,7 @@
 
                         <div class="col-6 col-sm-4 col-md-3 text-center">
                             <a href="" class="mx-auto"
-                                style="width: 180px; height: 180px; display: flex; align-items: center; justify-content: center;">
+                                style="width: 70%; height: auto; display: flex; align-items: center; justify-content: center;">
                                 <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJCbG9jay1iX2NvbmZpZ1wvMFwvNjI3LTEwLXNmNXNwYi5wbmciLCJlZGl0cyI6W119"
                                     alt="Health & Harmony" class="img-fluid rounded-circle">
                             </a>
@@ -965,12 +1015,16 @@
                 <div class="container-fluid w-100  py-2" style=" background-color: rgba(1, 61, 52, 0.1)">
                     <div class="container">
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h1 class="text-success fw-bold fs-1 mb-0">Glow Naturally by Orgagenic</h1>
-                            <a href="#" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold shadow-sm 
-   transition-all" style="transition: 0.3s;">
+                            <h1 class="text-success fw-bold fs-6 fs-sm-5 fs-md-4 fs-lg-3 mb-0">
+                                Glow Naturally by Orgagenic
+                            </h1>
+                            <a href="#"
+                                class="btn btn-outline-primary rounded-pill px-2 px-sm-3 py-1 py-sm-2 fw-semibold shadow-sm">
                                 See All <i class="fas fa-arrow-right ms-1"></i>
                             </a>
                         </div>
+
+
 
                         <!-- Carousel -->
                         <div class="position-relative">
@@ -979,7 +1033,7 @@
                                 style="scroll-behavior: smooth;">
 
                                 <!-- CARD 1 -->
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-3 flex-shrink-0">
                                     <div
                                         class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
                                         <!-- Product Image with hover zoom -->
@@ -1047,7 +1101,7 @@
                                 </div>
 
                                 <!-- CARD 1 -->
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 flex-shrink-0">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6  flex-shrink-0">
                                     <div
                                         class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
                                         <!-- Product Image with hover zoom -->
@@ -1547,9 +1601,11 @@
                 <div class="container-fluid  py-2">
                     <div class="container">
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h1 class="text-success fw-bold fs-1 mb-0">Bedroom Boosters</h1>
-                            <a href="#" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold shadow-sm 
-   transition-all" style="transition: 0.3s;">
+                            <h1 class="text-success fw-bold fs-6 fs-sm-5 fs-md-4 fs-lg-3 mb-0">
+                                Bedroom Boosters
+                            </h1>
+                            <a href="#"
+                                class="btn btn-outline-primary rounded-pill px-2 px-sm-3 py-1 py-sm-2 fw-semibold shadow-sm">
                                 See All <i class="fas fa-arrow-right ms-1"></i>
                             </a>
                         </div>
@@ -2193,11 +2249,243 @@
             </div>
 
         </div>
-    </div>
 
+
+    <!-- Mobile sticky footer using Bootstrap classes only -->
+    <footer class="navbar navbar-light bg-white shadow-sm fixed-bottom border-top d-lg-none">
+        <div class="container-fluid">
+            <div class="row w-100">
+                <div class="col">
+                    <div class="d-flex justify-content-around align-items-center py-2">
+
+                        <div class="text-center">
+                            <a href="index.html" class="text-decoration-none text-primary">
+                                <div class="d-flex flex-column align-items-center">
+                                    <i class="fas fa-home fs-5 mb-1"></i>
+                                    <small class="fw-medium">Home</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Sidebar Toggle Link -->
+                        <div class="text-center">
+                            <a href="#" class="mobile-sidebar-toggle d-flex flex-column align-items-center"
+                                id="mobileSidebarToggle">
+                                <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                                <small class="fw-medium">Categories</small>
+                            </a>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="#" class="text-decoration-none text-muted">
+                                <div class="d-flex flex-column align-items-center">
+                                    <i class="fas fa-flask fs-5 mb-1"></i>
+                                    <small class="fw-medium">Lab Test</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="#" class="text-decoration-none text-muted">
+                                <div class="d-flex flex-column align-items-center">
+                                    <i class="fas fa-spa fs-5 mb-1"></i>
+                                    <small class="fw-medium">Beauty</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="#" class="text-decoration-none text-muted">
+                                <div class="d-flex flex-column align-items-center">
+                                    <i class="fas fa-heartbeat fs-5 mb-1"></i>
+                                    <small class="fw-medium">Healthcare</small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="#" class="text-decoration-none text-muted">
+                                <div class="d-flex flex-column align-items-center">
+                                    <i class="fas fa-user fs-5 mb-1"></i>
+                                    <small class="fw-medium">User</small>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-header">
+            <h5>Categories</h5>
+            <button type="button" class="mobile-close-btn" id="mobileCloseSidebar">
+                <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <div>
+            <ul style="list-style: none; margin: 0; padding: 0;">
+                <!-- Parent Category 1 -->
+                <li>
+                    <a href="#" class="mobile-category-link" data-toggle="mobile-submenu">
+                        <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjMyMlwvNjMyMi1NZWRpY2luZS1JY29uLXIzeHluby5qcGVnIiwiZWRpdHMiOltdfQ=="
+                            alt="Medicine">
+                        <span class="flex-grow-1">Medicine</span>
+                        <span class="mobile-arrow">
+                            <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </a>
+                    <div class="mobile-submenu">
+                        <a href="#" class="mobile-category-link" data-toggle="mobile-submenu">
+                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU2OFwvNjU2OC1BbmVzdGhldGljcy1OZXVyb211c2N1bGFyLUJsb2NraW5nLWtkM2w3dy5wbmciLCJlZGl0cyI6W119"
+                                alt="Anesthetics">
+                            <span class="flex-grow-1">Anesthetics & Nerve</span>
+                            <span class="mobile-arrow">
+                                <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </span>
+                        </a>
+                        <div class="mobile-submenu">
+                            <a href="#" class="mobile-category-link" data-toggle="mobile-submenu">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU3M1wvNjU3My1fMDA1NV9wb3N0b3BlcmF0aXZlLXBhaW4tYzk5OHE0LnBuZyIsImVkaXRzIjpbXX0="
+                                    alt="Muscle Relaxants">
+                                <span class="flex-grow-1">Muscle Relaxants</span>
+                                <span class="mobile-arrow">
+                                    <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                                        stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <div class="mobile-submenu">
+                                <a href="#" class="mobile-category-link">
+                                    <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU3N1wvNjU3Ny1Mb2NhbC1SZWdpb25hbC1BbmVzdGhldGljcy13OXZ5OW4ucG5nIiwiZWRpdHMiOltdfQ=="
+                                        alt="Sub Category 1">
+                                    <span class="flex-grow-1">Sub Category 1</span>
+                                </a>
+                                <a href="#" class="mobile-category-link">
+                                    <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU4NFwvNjU4NC1BbmVzdGhlc2lhLVJlY292ZXJ5LTFseTFxaS5wbmciLCJlZGl0cyI6W119"
+                                        alt="Sub Category 2">
+                                    <span class="flex-grow-1">Sub Category 2</span>
+                                </a>
+                            </div>
+                            <a href="#" class="mobile-category-link">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU4OFwvNjU4OC1DZXJlYnJvdmFzY3VsYXItU3lzdGVtLXI3cjVpai5wbmciLCJlZGl0cyI6W119"
+                                    alt="Post-Operative Pain">
+                                <span class="flex-grow-1">Post-Operative Pain</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Parent Category 2 -->
+                <li>
+                    <a href="#" class="mobile-category-link" data-toggle="mobile-submenu">
+                        <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjM4MVwvNjM4MS1BbGxlcmd5LUltbXVuZS1TeXN0ZW0tZjQxZG5rLnBuZyIsImVkaXRzIjpbXX0="
+                            alt="Antimicrobial">
+                        <span class="flex-grow-1">Antimicrobial</span>
+                        <span class="mobile-arrow">
+                            <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </a>
+                    <div class="mobile-submenu">
+                        <a href="#" class="mobile-category-link">
+                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjM4MVwvNjM4MS1BbGxlcmd5LUltbXVuZS1TeXN0ZW0tZjQxZG5rLnBuZyIsImVkaXRzIjpbXX0="
+                                alt="Antibiotics">
+                            <span class="flex-grow-1">Antibiotics</span>
+                        </a>
+                        <a href="#" class="mobile-category-link">
+                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjM4MVwvNjM4MS1BbGxlcmd5LUltbXVuZS1TeXN0ZW0tZjQxZG5rLnBuZyIsImVkaXRzIjpbXX0="
+                                alt="Antivirals">
+                            <span class="flex-grow-1">Antivirals</span>
+                        </a>
+                    </div>
+                </li>
+
+                <!-- Parent Category 3 -->
+                <li>
+                    <a href="#" class="mobile-category-link" data-toggle="mobile-submenu">
+                        <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjMyMlwvNjMyMi1NZWRpY2luZS1JY29uLXIzeHluby5qcGVnIiwiZWRpdHMiOltdfQ=="
+                            alt="Medicine">
+                        <span class="flex-grow-1">Medicine</span>
+                        <span class="mobile-arrow">
+                            <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </a>
+                    <div class="mobile-submenu">
+                        <a href="#" class="mobile-category-link" data-toggle="mobile-submenu">
+                            <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU2OFwvNjU2OC1BbmVzdGhldGljcy1OZXVyb211c2N1bGFyLUJsb2NraW5nLWtkM2w3dy5wbmciLCJlZGl0cyI6W119"
+                                alt="Anesthetics">
+                            <span class="flex-grow-1">Anesthetics & Nerve</span>
+                            <span class="mobile-arrow">
+                                <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                                    stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </span>
+                        </a>
+                        <div class="mobile-submenu">
+                            <a href="#" class="mobile-category-link" data-toggle="mobile-submenu">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU3M1wvNjU3My1fMDA1NV9wb3N0b3BlcmF0aXZlLXBhaW4tYzk5OHE0LnBuZyIsImVkaXRzIjpbXX0="
+                                    alt="Muscle Relaxants">
+                                <span class="flex-grow-1">Muscle Relaxants</span>
+                                <span class="mobile-arrow">
+                                    <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                                        stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <div class="mobile-submenu">
+                                <a href="#" class="mobile-category-link">
+                                    <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU3N1wvNjU3Ny1Mb2NhbC1SZWdpb25hbC1BbmVzdGhldGljcy13OXZ5OW4ucG5nIiwiZWRpdHMiOltdfQ=="
+                                        alt="Sub Category 1">
+                                    <span class="flex-grow-1">Sub Category 1</span>
+                                </a>
+                                <a href="#" class="mobile-category-link">
+                                    <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU4NFwvNjU4NC1BbmVzdGhlc2lhLVJlY292ZXJ5LTFseTFxaS5wbmciLCJlZGl0cyI6W119"
+                                        alt="Sub Category 2">
+                                    <span class="flex-grow-1">Sub Category 2</span>
+                                </a>
+                            </div>
+                            <a href="#" class="mobile-category-link">
+                                <img src="https://cdn2.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJUYXhvbm9teS10X2Jhbm5lclwvNjU4OFwvNjU4OC1DZXJlYnJvdmFzY3VsYXItU3lzdGVtLXI3cjVpai5wbmciLCJlZGl0cyI6W119"
+                                    alt="Post-Operative Pain">
+                                <span class="flex-grow-1">Post-Operative Pain</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
